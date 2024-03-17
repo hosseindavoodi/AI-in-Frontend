@@ -41,6 +41,11 @@ body {
   list-style-type: none; /* Remove bullet points */
 }
 
+.quickMenuItems {
+  cursor: pointer;
+  list-style-type: none; /* Remove bullet points */
+}
+
 .menuContainer {
   display: none; /* Hide the menu by default */
 }
@@ -54,9 +59,18 @@ body {
   width: 200px;
 }
 
+.quickMenuItems > li {
+  height: 40px;
+}
+
 .quickMenu {
   background-color: rgb(62, 62, 62);
   border-radius: 15px;
   padding: 20px;
   width: 200px;
+  height: 120px;
+}
+
+.quickMenuTitle {
+  color: rgb(135, 135, 135);
 }

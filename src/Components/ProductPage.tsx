@@ -1,26 +1,28 @@
 // ProductPage.tsx
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useMount } from "./Hooks/useMount";
 
+const ProductsItems = [
+  { id: 1, name: "A", category: "A" },
+  { id: 2, name: "Backend Developer", category: "B" },
+  { id: 3, name: "English teacher", category: "G" },
+  { id: 4, name: "A", category: "A" },
+  { id: 5, name: "E", category: "E" },
+  { id: 6, name: "D", category: "D" },
+  { id: 7, name: "Math teacher", category: "G" },
+  { id: 8, name: "Python Programer", category: "B" },
+  { id: 9, name: "I", category: "I" },
+  { id: 10, name: "C", category: "C" },
+  { id: 11, name: "Math teacher", category: "G" },
+  { id: 12, name: "F", category: "F" },
+  { id: 13, name: "A", category: "A" },
+  { id: 14, name: "C", category: "C" },
+  { id: 15, name: "C# Programer", category: "B" },
+];
+
 const ProductPage: React.FC = () => {
-  const [products, setProducts] = useState([
-    { id: 1, name: "A", category: "A" },
-    { id: 2, name: "Backend Developer", category: "B" },
-    { id: 3, name: "English teacher", category: "G" },
-    { id: 4, name: "A", category: "A" },
-    { id: 5, name: "E", category: "E" },
-    { id: 6, name: "D", category: "D" },
-    { id: 7, name: "Math teacher", category: "G" },
-    { id: 8, name: "Python Programer", category: "B" },
-    { id: 9, name: "I", category: "I" },
-    { id: 10, name: "C", category: "C" },
-    { id: 11, name: "Math teacher", category: "G" },
-    { id: 12, name: "F", category: "F" },
-    { id: 13, name: "A", category: "A" },
-    { id: 14, name: "C", category: "C" },
-    { id: 15, name: "C# Programer", category: "B" },
-  ]);
+  const [products, setProducts] = useState(ProductsItems);
 
   useMount(() => {
     //const storedClicks = localStorage.getItem("productClicks");
@@ -57,26 +59,6 @@ const ProductPage: React.FC = () => {
 
   return (
     <>
-      <div className="header">
-        Menu
-        <div className="menuContainer">
-          <div style={{ display: "flex" }}>
-            <ul className="menu">
-              <li> Find job</li>
-              <li> Application proccess</li>
-              <li> CV designer</li>
-              <li> Blog</li>
-              <li> Contact us</li>
-            </ul>
-            <div className="quickMenu">
-              Quick Menu
-              <ul className="">
-                <li> Find job</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="container">
         {products.map((product) => (
           <div
