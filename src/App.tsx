@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ProductPage from "./Components/ProductPage";
-import ProductDetailsPage from "./Components/ProductDetailsPage";
-import Blogs from "./Components/Blogs";
+import ProductPage from "./Pages/ProductPage";
+import ProductDetailsPage from "./Pages/ProductDetailsPage";
+import Blogs from "./Pages/Blogs";
 import Header from "./Components/Header";
 
 const App: React.FC = () => {

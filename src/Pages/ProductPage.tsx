@@ -1,23 +1,23 @@
 // ProductPage.tsx
 
 import React, { useState } from "react";
-import { useMount } from "./Hooks/useMount";
+import { useMount } from "../Components/Hooks/useMount";
 
 const ProductsItems = [
-  { id: 1, name: "A", category: "A" },
+  { id: 1, name: "Master chef", category: "A" },
   { id: 2, name: "Backend Developer", category: "B" },
   { id: 3, name: "English teacher", category: "G" },
-  { id: 4, name: "A", category: "A" },
-  { id: 5, name: "E", category: "E" },
-  { id: 6, name: "D", category: "D" },
+  { id: 4, name: "chef", category: "A" },
+  { id: 5, name: "Dentist", category: "D" },
+  { id: 6, name: "Project manager", category: "C" },
   { id: 7, name: "Math teacher", category: "G" },
   { id: 8, name: "Python Programer", category: "B" },
-  { id: 9, name: "I", category: "I" },
-  { id: 10, name: "C", category: "C" },
+  { id: 9, name: "General doctor", category: "D" },
+  { id: 10, name: "Project manager", category: "C" },
   { id: 11, name: "Math teacher", category: "G" },
-  { id: 12, name: "F", category: "F" },
-  { id: 13, name: "A", category: "A" },
-  { id: 14, name: "C", category: "C" },
+  { id: 12, name: "Optometrist", category: "D" },
+  { id: 13, name: "Cook's helper", category: "A" },
+  { id: 14, name: "Project manager", category: "C" },
   { id: 15, name: "C# Programer", category: "B" },
 ];
 
