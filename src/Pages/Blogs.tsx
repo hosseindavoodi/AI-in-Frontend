@@ -1,6 +1,7 @@
 import React from "react";
 
 interface Article {
+  category: string;
   topic: string;
   title: string;
   content: string;
@@ -9,34 +10,39 @@ interface Article {
 
 const articles: Article[] = [
   {
-    topic: "Programming",
+    category: "B",
+    topic: "IT",
     title: "Improving Code Readability: Best Practices",
     content:
       "Enhance the readability of your codebase with these best practices. From meaningful variable names to consistent formatting, learn how to make your code more understandable and maintainable.",
     publishDate: "2024-03-26",
   },
   {
-    topic: "Programming",
+    category: "B",
+    topic: "IT",
     title: "Introduction to Functional Programming Concepts",
     content:
       "Explore the fundamentals of functional programming and its benefits. Learn about immutability, higher-order functions, and how to leverage these concepts to write cleaner and more concise code.",
     publishDate: "2024-01-27",
   },
   {
-    topic: "Teaching",
+    category: "G",
+    topic: "Education",
     title: "Creating Engaging Online Learning Experiences",
     content:
       "Design interactive and engaging online courses that captivate learners. Discover effective strategies for incorporating multimedia content, fostering discussions, and promoting active participation.",
     publishDate: "2024-03-28",
   },
   {
-    topic: "Teaching",
+    category: "G",
+    topic: "Education",
     title: "Building a Positive Classroom Culture",
     content:
       "Cultivate a positive and inclusive classroom environment to support student learning and well-being. Learn techniques for fostering respect, collaboration, and a sense of belonging among students.",
     publishDate: "2024-02-29",
   },
   {
+    category: "D",
     topic: "Healthcare",
     title: "The Benefits of Mindfulness Meditation",
     content:
@@ -44,6 +50,7 @@ const articles: Article[] = [
     publishDate: "2024-03-30",
   },
   {
+    category: "D",
     topic: "Healthcare",
     title: "5 Tips for Better Sleep Hygiene",
     content:
@@ -51,20 +58,23 @@ const articles: Article[] = [
     publishDate: "2024-03-01",
   },
   {
-    topic: "Cooking",
+    category: "A",
+    topic: "Food",
     title: "Exploring Global Cuisine: Flavorful Recipes to Try",
     content:
       "Embark on a culinary adventure with these delicious recipes from around the world. From spicy curries to savory pasta dishes, expand your palate and explore new flavors in your own kitchen.",
     publishDate: "2024-04-01",
   },
   {
-    topic: "Cooking",
+    category: "A",
+    topic: "Food",
     title: "Healthy Meal Prep for Busy Weekdays",
     content:
       "Simplify your weekday meals with these nutritious and easy-to-make recipes. Plan ahead and prepare healthy meals in advance to save time and stay on track with your health goals.",
     publishDate: "2024-04-02",
   },
   {
+    category: "C",
     topic: "Project Management",
     title: "Effective Time Management Techniques for Project Managers",
     content:
@@ -72,6 +82,7 @@ const articles: Article[] = [
     publishDate: "2024-04-03",
   },
   {
+    category: "C",
     topic: "Project Management",
     title: "Strategies for Agile Project Planning",
     content:
@@ -81,19 +92,50 @@ const articles: Article[] = [
 ];
 
 const ArticleList: React.FC = () => {
+  const storedCategoryClicks = localStorage.getItem("categoryClicks");
+
   const sortedArticles = [...articles].sort((a, b) => {
-    return (
-      new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
-    );
+    const dateComparison =
+      new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime();
+
+    if (storedCategoryClicks) {
+      const categoryClicks: { [key: string]: number } =
+        JSON.parse(storedCategoryClicks);
+      const totalClicksA = categoryClicks[a.category] || 0;
+      const totalClicksB = categoryClicks[b.category] || 0;
+
+      const clicksComparison = totalClicksB - totalClicksA;
+
+      return clicksComparison !== 0 ? clicksComparison : dateComparison;
+    } else {
+      return dateComparison;
+    }
   });
 
   return (
     <div>
       <h1>Articles</h1>
       {sortedArticles.map((article, index) => (
-        <div key={index} style={{ marginBottom: "50px", maxWidth: "700px" }}>
+        <div
+          key={index}
+          style={{
+            marginBottom: "50px",
+            maxWidth: "700px",
+          }}
+        >
           <h3>{article.title}</h3>
           <p>{article.content}</p>
+          <div
+            style={{
+              backgroundColor: "red",
+              padding: "2px",
+              color: "white",
+              width: "100px",
+              fontSize: "12px",
+            }}
+          >
+            {article.topic}
+          </div>
           <p style={{ color: "GrayText" }}>
             Publish Date: {article.publishDate}
           </p>
