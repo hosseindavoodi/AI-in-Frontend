@@ -113,7 +113,7 @@ const ArticleList: React.FC = () => {
   });
 
   return (
-    <div>
+    <div style={{ marginTop: "50px" }}>
       <h1>Articles</h1>
       {sortedArticles.map((article, index) => (
         <div

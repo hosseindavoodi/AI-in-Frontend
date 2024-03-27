@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMount } from "./Hooks/useMount";
+import { useNavigate } from "react-router-dom";
 
 const menuItems = [
   { id: 1, name: "Find job", click: "" },
@@ -11,12 +12,13 @@ const menuItems = [
 
 const Header = () => {
   const [quickMenu, setQuickMenu] = useState("");
+  const navigate = useNavigate();
 
   const handleMenuClick = (menuId: number, menuName: string) => {
     const clicksMap = JSON.parse(localStorage.getItem("menuClicks") || "{}");
     clicksMap[menuId] = (clicksMap[menuId] || 0) + 1;
     localStorage.setItem("menuClicks", JSON.stringify(clicksMap));
-    window.open(`/${menuName}`, "_blank");
+    navigate(`/${menuName}`);
     console.log(clicksMap);
   };
 
@@ -25,13 +27,19 @@ const Header = () => {
     if (storedMenuClicks) {
       const categoryClicksMap = JSON.parse(storedMenuClicks);
 
-      const sortedMenu = [...menuItems].sort(
-        (a, b) =>
-          (categoryClicksMap[b.id] || 0) - (categoryClicksMap[a.id] || 0) ||
-          a.id - b.id
+      const hasClicksGreaterThanOne = Object.values(categoryClicksMap).some(
+        (value) => typeof value === "number" && value > 1
       );
-      console.log(sortedMenu);
-      setQuickMenu(sortedMenu[0].name);
+
+      if (hasClicksGreaterThanOne) {
+        const sortedMenu = [...menuItems].sort(
+          (a, b) =>
+            (categoryClicksMap[b.id] || 0) - (categoryClicksMap[a.id] || 0) ||
+            a.id - b.id
+        );
+        console.log(sortedMenu);
+        setQuickMenu(sortedMenu[0].name);
+      }
     }
   });
 
